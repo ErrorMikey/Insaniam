@@ -8,7 +8,10 @@ on:
         default: false
         required: false
         type: boolean
-    secrets: inherit
+    secrets:
+      saps-token:
+        description: "Saps token for publishing to maven"
+        required: true
 
 jobs:
   build:
