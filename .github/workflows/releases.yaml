@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: Basic java run
-    uses: ./.github/workflows/base.yml
+    uses: ./.github/workflows/base.yaml
     with:
       use-snapshots: false
     secrets:
