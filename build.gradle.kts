@@ -46,7 +46,7 @@ gradlePlugin {
 //    testSourceSet(sourceSets["test"])
 
     plugins.create("insaniam") {
-        id = "pro.mikey.plugins.insaniam"
+        id = "pro.mikey.insaniam"
         implementationClass = "pro.mikey.insaniam.InsaniamPlugin"
         displayName = "Insaniam"
         description = project.description
