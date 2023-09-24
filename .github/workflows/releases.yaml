@@ -1,0 +1,16 @@
+name: Release
+
+# Create a release on a tag push event
+on:
+  push:
+    tags:
+      - 'release/v*.*.*'
+
+jobs:
+  build:
+    name: Basic java run
+    uses: ./.github/workflows/base.yml
+    with:
+      use-snapshots: false
+    secrets:
+      saps-token: ${{ secrets.SAPS_TOKEN }}

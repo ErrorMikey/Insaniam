@@ -1,0 +1,16 @@
+name: Release
+
+# Create a release any commit to main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Basic java run
+    uses: ./.github/workflows/base.yml
+    with:
+      use-snapshots: true
+    secrets:
+      saps-token: ${{ secrets.SAPS_TOKEN }}

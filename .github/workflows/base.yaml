@@ -1,0 +1,32 @@
+name: Base Java
+
+on:
+  workflow_call:
+    inputs:
+      use-snapshots:
+        description: "Defines if maven should use a snapshot build"
+        default: false
+        required: false
+        type: boolean
+    secrets: inherit
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone project
+        uses: actions/checkout@v3
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: "temurin"
+          java-version: 17
+      - name: Fix borked permissions
+        run: chmod +x ./gradlew
+      - name: Run gradle tasks [${{ inputs.gradle-tasks }}]
+        uses: gradle/gradle-build-action@v2
+        env:
+          SNAPSHOT: ${{ inputs.use-snapshots }}
+          SAPS_TOKEN: ${{ secrets.saps-token }}
+        with:
+          arguments: publish
