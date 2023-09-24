@@ -7,8 +7,10 @@ plugins {
     id("com.gradle.plugin-publish") version "1.2.0"
 }
 
+val isSnapshot = providers.environmentVariable("SNAPSHOT").getOrElse("false").toBoolean()
+
 group = "pro.mikey.plugins"
-version = "0.1-SNAPSHOT"
+version = "0.1${if (isSnapshot) "-SNAPSHOT" else ""}"
 description = "Not sure yet"
 
 repositories {
@@ -62,8 +64,6 @@ publishing {
 
     repositories {
         maven {
-            val isSnapshot = providers.environmentVariable("SNAPSHOT").getOrElse("false").toBoolean()
-
             url = uri("https://maven.saps.dev/${if (isSnapshot) "snapshots" else "releases"}")
             credentials {
                 username = "errormikey"
