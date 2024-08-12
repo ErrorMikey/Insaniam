@@ -1,18 +1,17 @@
 package pro.mikey.insaniam.extensions
 
-import groovy.lang.Closure
-import groovy.lang.DelegatesTo
 import org.gradle.api.Project
-import pro.mikey.insaniam.types.ChangeLogData
 
+/**
+ * TODO: mod-info manifest generator
+ * TODO: neoforge-like version creation
+ */
 abstract class InsaniamUtils(private val project: Project) {
-    fun createChangelog(
-        @DelegatesTo(ChangeLogData::class) closure: Closure<*>
-    ): String {
-        val data = project.objects.newInstance(ChangeLogData::class.java)
-        closure.delegate = data
-        closure.call()
+    fun createChangelog(): String {
+        // Pull the changelog settings from the insainam extension
+        val data = project.extensions.getByType(InsaniamExtension::class.java).changelog
 
+        // Get the changelog text or try the file value
         val changelogFile = data.file.asFile
         if (!changelogFile.get().exists()) {
             throw IllegalArgumentException("Changelog file does not exist: ${changelogFile.get().path}")
@@ -37,6 +36,6 @@ abstract class InsaniamUtils(private val project: Project) {
         }
 
         return versionData.trim().takeIf { it.isNotEmpty() }
-            ?: data.fallbackValue.getOrElse("No changelog data found")
+            ?: data.fallbackValue.get()
     }
 }

@@ -63,11 +63,15 @@ publishing {
     }
 
     repositories {
-        maven {
-            url = uri("https://maven.saps.dev/${if (isSnapshot) "snapshots" else "releases"}")
-            credentials {
-                username = "errormikey"
-                password = providers.environmentVariable("SAPS_TOKEN").get()
+        val token = providers.environmentVariable("SAPS_TOKEN")
+
+        if (token.isPresent()) {
+            maven {
+                url = uri("https://maven.saps.dev/${if (isSnapshot) "snapshots" else "releases"}")
+                credentials {
+                    username = "errormikey"
+                    password = token.get()
+                }
             }
         }
     }
