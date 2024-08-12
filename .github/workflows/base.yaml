@@ -9,8 +9,8 @@ on:
         required: false
         type: boolean
     secrets:
-      saps-token:
-        description: "Saps token for publishing to maven"
+      nanite-token:
+        description: "Nanite token for publishing to maven"
         required: true
 
 jobs:
