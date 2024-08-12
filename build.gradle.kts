@@ -10,7 +10,7 @@ plugins {
 val isSnapshot = providers.environmentVariable("SNAPSHOT").getOrElse("false").toBoolean()
 
 group = "dev.nanite.plugins"
-version = "0.2.0${if (isSnapshot) "-SNAPSHOT" else ""}"
+version = "0.2.1${if (isSnapshot) "-SNAPSHOT" else ""}"
 description = "Not sure yet"
 
 repositories {
@@ -47,7 +47,7 @@ gradlePlugin {
 
     plugins.create("insaniam") {
         id = "dev.nanite.plugins.insaniam"
-        implementationClass = "dev.nanite.plugin.InsaniamPlugin"
+        implementationClass = "dev.nanite.insaniam.InsaniamPlugin"
         displayName = "Insaniam"
         description = project.description
         version = project.version
