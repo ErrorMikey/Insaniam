@@ -1,4 +1,4 @@
-package me.modmuss50.mpp.test
+package pro.mikey.insaniam.test.integration
 
 import org.gradle.testkit.runner.BuildResult
 import org.gradle.testkit.runner.GradleRunner
@@ -18,6 +18,11 @@ interface IntegrationTest {
                 java
                 id("pro.mikey.plugins.insaniam")
             }
+            
+            // Injected empty task with a doLast to print the version
+            tasks.register("emptyTask") {
+                doLast { }
+            }
         """.trimIndent()
 
         @Language("gradle")
@@ -25,6 +30,11 @@ interface IntegrationTest {
             plugins {
                 id 'java'
                 id 'pro.mikey.plugins.insaniam'
+            }
+            
+            // Injected empty task with a doLast to print the version
+            task emptyTask {
+                doLast { }
             }
         """.trimIndent()
     }
@@ -48,6 +58,7 @@ interface IntegrationTest {
         private val buildScript: File
         private val gradleSettings: File
         private var arguments = ArrayList<String>()
+        private val gradleProperties: File
 
         init {
             val testDir = File("build/intergation_test")
@@ -56,6 +67,7 @@ interface IntegrationTest {
             projectDir = File(testDir, "project")
             buildScript = File(projectDir, "build.gradle$ext")
             gradleSettings = File(projectDir, "settings.gradle$ext")
+            gradleProperties = File(projectDir, "gradle.properties")
 
             projectDir.mkdirs()
 
@@ -64,15 +76,11 @@ interface IntegrationTest {
             File(projectDir, "build.gradle.kts").delete()
             File(projectDir, "settings.gradle").delete()
             File(projectDir, "settings.gradle.kts").delete()
-
-            // Create a fmj for modrith
-            val resources = File(projectDir, "src/main/resources")
-            resources.mkdirs()
-            File(resources, "fabric.mod.json").writeText("{}")
+            File(projectDir, "gradle.properties").delete()
 
             buildScript(if (groovy) groovyHeader else kotlinHeader)
 
-            gradleSettings.writeText("rootProject.name = \"mpp-example\"")
+            gradleSettings.writeText("rootProject.name = \"insanium-example\"")
 
             runner.withProjectDir(projectDir)
             argument("--gradle-user-home", gradleHome.absolutePath)
@@ -102,6 +110,11 @@ interface IntegrationTest {
 
             gradleSettings.appendText("\ninclude(\"$name\")")
 
+            return this
+        }
+
+        fun addProperty(key: String, value: String): TestBuilder {
+            gradleProperties.appendText("$key=$value\n")
             return this
         }
 

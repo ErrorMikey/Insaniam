@@ -1,8 +1,8 @@
-package pro.mikey.insaniam.test.changelogs
+package pro.mikey.insaniam.test.integration.changelogs
 
-import me.modmuss50.mpp.test.IntegrationTest
 import org.gradle.testkit.runner.BuildResult
 import org.gradle.testkit.runner.TaskOutcome
+import pro.mikey.insaniam.test.integration.IntegrationTest
 import java.io.File
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -75,12 +75,8 @@ class ChangelogGeneratorTest : IntegrationTest {
                     
                     val changelogData = insaniamUtils.createChangelog()
                     
-                    task("createChangelogTest") {
-                        doLast { }
-                    }
-                    
                     println("CHANGELOGDATA=" + changelogData)
                 """.trimIndent()
-            ).run("createChangelogTest")
+            ).run("emptyTask")
     }
 }
