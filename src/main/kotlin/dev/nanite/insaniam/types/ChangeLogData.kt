@@ -1,4 +1,4 @@
-package pro.mikey.insaniam.types
+package dev.nanite.insaniam.types
 
 import org.gradle.api.Project
 import org.gradle.api.file.RegularFileProperty

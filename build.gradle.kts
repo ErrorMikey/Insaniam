@@ -9,7 +9,7 @@ plugins {
 
 val isSnapshot = providers.environmentVariable("SNAPSHOT").getOrElse("false").toBoolean()
 
-group = "pro.mikey.plugins"
+group = "dev.nanite.plugins"
 version = "0.2.0${if (isSnapshot) "-SNAPSHOT" else ""}"
 description = "Not sure yet"
 
@@ -46,8 +46,8 @@ gradlePlugin {
 //    testSourceSet(sourceSets["test"])
 
     plugins.create("insaniam") {
-        id = "pro.mikey.plugins.insaniam"
-        implementationClass = "pro.mikey.insaniam.InsaniamPlugin"
+        id = "dev.nanite.plugins.insaniam"
+        implementationClass = "dev.nanite.plugin.InsaniamPlugin"
         displayName = "Insaniam"
         description = project.description
         version = project.version
@@ -63,13 +63,13 @@ publishing {
     }
 
     repositories {
-        val token = providers.environmentVariable("SAPS_TOKEN")
+        val token = providers.environmentVariable("NANITE_TOKEN")
 
         if (token.isPresent()) {
             maven {
-                url = uri("https://maven.saps.dev/${if (isSnapshot) "snapshots" else "releases"}")
+                url = uri("https://maven.nanite.dev/${if (isSnapshot) "snapshots" else "releases"}")
                 credentials {
-                    username = "errormikey"
+                    username = "nanite"
                     password = token.get()
                 }
             }

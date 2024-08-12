@@ -1,8 +1,7 @@
-package pro.mikey.insaniam.test.integration.changelogs
+package dev.nanite.insaniam.test.integration
 
 import org.gradle.testkit.runner.BuildResult
 import org.gradle.testkit.runner.TaskOutcome
-import pro.mikey.insaniam.test.integration.IntegrationTest
 import java.io.File
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -28,7 +27,7 @@ class ChangelogGeneratorTest : IntegrationTest {
 
     @Test
     fun `test single version changelog generation`() {
-        val result = createBaseGradleTask("./changelog-basic.md")
+        val result = createBaseGradleTask("changelog-basic.md")
         val resultText = result.output
 
         assertEquals(TaskOutcome.SUCCESS, result.task(":createChangelogTest")?.outcome)
@@ -37,7 +36,7 @@ class ChangelogGeneratorTest : IntegrationTest {
 
     @Test
     fun `test snipping changelog generation`() {
-        val result = createBaseGradleTask("./changelog-requires-splitting.md")
+        val result = createBaseGradleTask("changelog-requires-splitting.md")
         val resultText = result.output
 
         assertEquals(TaskOutcome.SUCCESS, result.task(":createChangelogTest")?.outcome)
@@ -47,7 +46,7 @@ class ChangelogGeneratorTest : IntegrationTest {
 
     @Test
     fun `test fallback changelog generation`() {
-        val result = createBaseGradleTask("./changelog-no-valid-target.md", true)
+        val result = createBaseGradleTask("changelog-no-valid-target.md", true)
         val resultText = result.output
 
         assertEquals(TaskOutcome.SUCCESS, result.task(":createChangelogTest")?.outcome)

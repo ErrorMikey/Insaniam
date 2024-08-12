@@ -13,4 +13,4 @@ jobs:
     with:
       use-snapshots: true
     secrets:
-      saps-token: ${{ secrets.SAPS_TOKEN }}
+      nanite-token: ${{ secrets.NANITE_DEPLOY }}

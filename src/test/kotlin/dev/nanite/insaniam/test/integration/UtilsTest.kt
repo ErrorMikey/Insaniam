@@ -1,6 +1,5 @@
-package pro.mikey.insaniam.test.integration.utils
+package dev.nanite.insaniam.test.integration
 
-import pro.mikey.insaniam.test.integration.IntegrationTest
 import kotlin.test.Test
 import kotlin.test.assertTrue
 

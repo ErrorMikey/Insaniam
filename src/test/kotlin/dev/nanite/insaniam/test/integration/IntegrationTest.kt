@@ -1,4 +1,4 @@
-package pro.mikey.insaniam.test.integration
+package dev.nanite.insaniam.test.integration
 
 import org.gradle.testkit.runner.BuildResult
 import org.gradle.testkit.runner.GradleRunner
@@ -16,7 +16,7 @@ interface IntegrationTest {
         val kotlinHeader = """
             plugins {
                 java
-                id("pro.mikey.plugins.insaniam")
+                id("dev.nanite.plugins.insaniam")
             }
             
             // Injected empty task with a doLast to print the version
@@ -29,7 +29,7 @@ interface IntegrationTest {
         val groovyHeader = """
             plugins {
                 id 'java'
-                id 'pro.mikey.plugins.insaniam'
+                id 'dev.nanite.plugins.insaniam'
             }
             
             // Injected empty task with a doLast to print the version

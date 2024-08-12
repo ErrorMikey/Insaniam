@@ -1,10 +1,10 @@
-package pro.mikey.insaniam.extensions
+package dev.nanite.insaniam.extensions
 
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
-import pro.mikey.insaniam.types.ChangeLogData
+import dev.nanite.insaniam.types.ChangeLogData
 import javax.inject.Inject
 
 abstract class InsaniamExtension @Inject constructor(private val project: Project) {

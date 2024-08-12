@@ -1,10 +1,10 @@
-package pro.mikey.insaniam
+package dev.nanite.insaniam
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.reflect.TypeOf
-import pro.mikey.insaniam.extensions.InsaniamExtension
-import pro.mikey.insaniam.extensions.InsaniamUtils
+import dev.nanite.insaniam.extensions.InsaniamExtension
+import dev.nanite.insaniam.extensions.InsaniamUtils
 
 @Suppress("unused")
 class InsaniamPlugin : Plugin<Project> {

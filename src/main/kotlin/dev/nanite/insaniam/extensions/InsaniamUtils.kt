@@ -1,4 +1,4 @@
-package pro.mikey.insaniam.extensions
+package dev.nanite.insaniam.extensions
 
 import org.gradle.api.Project
 
