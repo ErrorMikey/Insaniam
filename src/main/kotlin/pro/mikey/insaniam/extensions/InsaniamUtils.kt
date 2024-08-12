@@ -4,7 +4,6 @@ import org.gradle.api.Project
 
 /**
  * TODO: mod-info manifest generator
- * TODO: neoforge-like version creation
  */
 abstract class InsaniamUtils(private val project: Project) {
     fun createChangelog(): String {

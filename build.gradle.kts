@@ -10,7 +10,7 @@ plugins {
 val isSnapshot = providers.environmentVariable("SNAPSHOT").getOrElse("false").toBoolean()
 
 group = "pro.mikey.plugins"
-version = "0.1${if (isSnapshot) "-SNAPSHOT" else ""}"
+version = "0.2.0${if (isSnapshot) "-SNAPSHOT" else ""}"
 description = "Not sure yet"
 
 repositories {
